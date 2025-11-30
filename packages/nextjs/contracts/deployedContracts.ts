@@ -468,11 +468,17 @@ const deployedContracts = {
       inheritedFunctions: {},
       deployedOnBlock: 1,
     },
-    ChainlinkOracle: {
+    PythOracle: {
       address: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
       abi: [
         {
-          inputs: [],
+          inputs: [
+            {
+              internalType: "address",
+              name: "pythContract",
+              type: "address",
+            },
+          ],
           stateMutability: "nonpayable",
           type: "constructor",
         },
@@ -516,10 +522,23 @@ const deployedContracts = {
               type: "address",
             },
           ],
-          name: "priceFeeds",
+          name: "priceIds",
           outputs: [
             {
-              internalType: "address",
+              internalType: "bytes32",
+              name: "",
+              type: "bytes32",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "pyth",
+          outputs: [
+            {
+              internalType: "contract IPyth",
               name: "",
               type: "address",
             },
@@ -535,14 +554,27 @@ const deployedContracts = {
               type: "address",
             },
             {
-              internalType: "address",
-              name: "feed",
-              type: "address",
+              internalType: "bytes32",
+              name: "priceId",
+              type: "bytes32",
             },
           ],
           name: "setPriceFeed",
           outputs: [],
           stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "bytes[]",
+              name: "priceUpdateData",
+              type: "bytes[]",
+            },
+          ],
+          name: "updatePriceFeeds",
+          outputs: [],
+          stateMutability: "payable",
           type: "function",
         },
       ],

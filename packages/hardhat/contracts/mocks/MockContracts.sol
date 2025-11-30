@@ -38,9 +38,14 @@ contract MockWETH is ERC20("Mock Wrapped Ether", "mWETH") {
 
 contract MockOracle is IOracle {
     mapping(address => uint256) public prices;
+    mapping(address => bytes32) public priceIds;
 
     function setPrice(address token, uint256 price) external {
         prices[token] = price;
+    }
+
+    function setPriceFeed(address token, bytes32 priceId) external override {
+        priceIds[token] = priceId;
     }
 
     function getPrice(address token) external view override returns (uint256 price) {
